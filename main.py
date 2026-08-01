@@ -30,15 +30,14 @@ eyebrow_right = pygame.image.load(ruta + "eyebrow_right.png").convert_alpha()
 mouth = pygame.image.load(ruta + "mouth.png").convert_alpha()
 front_layer = pygame.image.load(ruta + "front_layer.png").convert_alpha()
 
-# Posición donde aparecerá el personaje
 x = 300
 y = 100
+
+tiempo = 0
 
 # -----------------------------
 # Bucle principal
 # -----------------------------
-
-ejecutando = True
 
 while ejecutando:
 
@@ -46,8 +45,13 @@ while ejecutando:
         if evento.type == pygame.QUIT:
             ejecutando = False
 
-    pantalla.fill((40, 40, 40))
+    # -------------------------
+    # Animación Idle
+    # -------------------------
+    tiempo += 0.05
+    x = 300 + math.sin(tiempo) * 8
 
+    pantalla.fill((40, 40, 40))
     # Dibujar las capas en orden
     pantalla.blit(back_layer, (x, y))
     pantalla.blit(body, (x, y))
